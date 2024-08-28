@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("connect.php");
+include("authenticate.php");
 
 ?>
 
@@ -10,7 +10,8 @@ include("connect.php");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Dashboard</title>
 </head>
 <body>
     <div style="text-align:center; padding:15%;">
@@ -25,10 +26,10 @@ include("connect.php");
        }
        ?>
        :)<br />
-       <h2>Welcome to Task 2</h2><br />
-       This is ur profile
+       <h2>Welcome to Dashboard</h2><br />
+       <a class="btn btn-primary" href="index.php">Click Here</a>
       </p>
-      <a href="logout.php">Logout</a>
+      
     </div>
 </body>
 </html>

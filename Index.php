@@ -3,81 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register & Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <title>Blogs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container" id="signup" style="display:none;">
-      <h1 class="form-title">Register</h1>
-      <form method="post" action="register.php">
-        <div class="input-group">
-           <i class="fas fa-user"></i>
-           <input type="text" name="fName" id="fName" placeholder="First Name" required>
-           <label for="fname">First Name</label>
-        </div>
-        <div class="input-group">
-            <i class="fas fa-user"></i>
-            <input type="text" name="lName" id="lName" placeholder="Last Name" required>
-            <label for="lName">Last Name</label>
-        </div>
-        <div class="input-group">
-            <i class="fas fa-envelope"></i>
-            <input type="email" name="email" id="email" placeholder="Email" required>
-            <label for="email">Email</label>
-        </div>
-        <div class="input-group">
-            <i class="fas fa-lock"></i>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-            <label for="password">Password</label>
-        </div>
-       <input type="submit" class="btn" value="Sign Up" name="signUp">
-      </form>
-      <p class="or">
-        ----------or--------
-      </p>
-      <div class="icons">
-        <i class="fab fa-google"></i>
-        <i class="fab fa-facebook"></i>
-      </div>
-      <div class="links">
-        <p>Already Have Account ?</p>
-        <button id="signInButton">Sign In</button>
-      </div>
+    <header class="p-4 bg-dark text-center">
+        <h1><a href="index.php" class="text-light text-decoration-none">Blogs Are Here</a></h1>
+    </header>
+    <div class="post-list mt-5">
+        <div class="container">
+            <?php
+                include("connect.php");
+                $sqlSelect = "SELECT * FROM posts";
+                $result = mysqli_query($conn,$sqlSelect);
+                while ($data = mysqli_fetch_array($result)) {
+                ?>
+                    <div class="row mb-4 p-5 bg-light">
+                        <div class="col-sm-2">
+                            <?php echo $data["date"]; ?>
+                        </div>
+                        <div class="col-sm-3">
+                           <h2> <?php echo $data["title"]; ?></h2>
+                        </div>
+                        <div class="col-sm-5">
+                            <?php echo $data["content"]; ?>
+                        </div>
+                        <div class="col-sm-2">
+                            <a href="view.php?id=<?php echo $data['id']; ?>" class="btn btn-primary">READ MORE</a>
+                        </div>
+                    </div>
+                <?php
+                }
+            ?>
+         </div>
     </div>
-
-<!-- SignIn Modal -->
-
-    <div class="container" id="signIn">
-        <h1 class="form-title">Sign In</h1>
-        <form method="post" action="register.php">
-          <div class="input-group">
-              <i class="fas fa-envelope"></i>
-              <input type="email" name="email" id="email" placeholder="Email" required>
-              <label for="email">Email</label>
-          </div>
-          <div class="input-group">
-              <i class="fas fa-lock"></i>
-              <input type="password" name="password" id="password" placeholder="Password" required>
-              <label for="password">Password</label>
-          </div>
-          <p class="recover">
-            <a href="#">Recover Password</a>
-          </p>
-         <input type="submit" class="btn" value="Sign In" name="signIn">
-        </form>
-        <p class="or">
-          ----------or--------
-        </p>
-        <div class="icons">
-          <i class="fab fa-google"></i>
-          <i class="fab fa-facebook"></i>
-        </div>
-        <div class="links">
-          <p>Don't have account yet?</p>
-          <button id="signUpButton">Sign Up</button>
-        </div>
-      </div>
-      <script src="script.js"></script>
+    <div class="footer bg-dark p-4 mt-4">
+        <a href="admin/logout.php" class="text-light">Admin Panel</a>
+    </div>
 </body>
 </html>

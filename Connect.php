@@ -1,11 +1,11 @@
 <?php
+$dbHost = "localhost";
+$dbUser = "root";
+$dbPass = "";
+$dbName = "cms";
 
-$host="localhost";
-$user="root";
-$pass="";
-$db="login";
-$conn=new mysqli($host,$user,$pass,$db);
-if($conn->connect_error){
-    echo "Failed to connect DB".$conn->connect_error;
+$conn = mysqli_connect($dbHost, $dbUser, $dbPass, $dbName);
+if (!$conn) {
+    echo ("Something went wrong. Database is not connected;");
 }
 ?>
